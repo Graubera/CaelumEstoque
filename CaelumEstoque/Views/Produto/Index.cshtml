@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Quantidade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var produto in ViewBag.Produtos)
+        {
+            <tr>
+                <td>@produto.Id</td>
+                <td>
+                    @Html.RouteLink((String)produto.Nome, "VisualizaProdutos", new { id = produto.Id })
+                    @*@Html.ActionLink((String)produto.Nome, "Visualiza", new { id = produto.Id })*@
+                    @*<a href="/Produto/Vizualiza/@produto.Id">@produto.Nome</a>*@
+                </td>
+                <td id="quantidade@(produto.Id)">@produto.Quantidade</td>
+                <td>
+                    <a href="#" onclick="decrementa(@produto.Id);">-</a>
+                </td>
+                @*<td>@Html.ActionLink("-", "DecrementaQuantidade", new { id = produto.Id })</td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript" src="~/Scripts/jquery-3.0.0.js"></script>
+<script type="text/javascript">
+    function decrementa(produtoId) {
+        var url = "@Url.Action("DecrementaQuantidade", "Produto")";
+        $.post(url, { id: produtoId }, atualiza);
+    }
+    function atualiza(resposta) {
+        $("#quantidade" + resposta.Id).html(resposta.Quantidade);
+    }
+</script>
+
