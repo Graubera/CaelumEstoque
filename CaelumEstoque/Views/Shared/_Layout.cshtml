@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <ul class="nav nav-pills float-right list-group-item">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Produtos", "Index", "Produto")</li>
+                <li>@Html.ActionLink("Categorias", "Index", "Categoria")</li>
+                <li>@Html.ActionLink("Usuários", "Index", "Usuario")</li>
+            </ul>
+            <h3 class="muted-text">Caelum Estoque</h3>
+        </div>
+        <div id="conteudo">
+            @RenderBody()
+            <!-- Aqui fica o conteúdo da view -->
+        </div>
+    </div>
+</body>
+</html>
