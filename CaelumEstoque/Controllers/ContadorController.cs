@@ -11,8 +11,11 @@ namespace CaelumEstoque.Controllers
         // GET: Contador
         public ActionResult Index()
         {
-
-            return View();
+            object valorNaSession = Session["contador"];
+            int contador = Convert.ToInt32(valorNaSession);
+            contador++;
+            Session["contador"] = contador;
+            return View(contador);
         }
     }
 }
