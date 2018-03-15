@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CaelumEstoque.DAO;
+using CaelumEstoque.Filter;
 using CaelumEstoque.Models;
 
 namespace CaelumEstoque.Controllers
 {
+    [AutorizacaoFilter]
     public class ProdutoController : Controller
     {
         // GET: Produto
@@ -29,6 +31,7 @@ namespace CaelumEstoque.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Adiciona(Produto produto)
         {
             int idDaInformatica = 1;
